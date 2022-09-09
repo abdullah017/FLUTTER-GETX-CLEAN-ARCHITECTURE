@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class CustomAnimatedBottomBar extends StatelessWidget {
   const CustomAnimatedBottomBar({
     Key? key,

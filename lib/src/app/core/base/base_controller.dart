@@ -1,12 +1,10 @@
 import 'dart:async';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:getx_clean_architecture/src/app/core/widget/base_widgets.dart';
 import 'package:new_version/new_version.dart';
-
 
 ///
 /// --------------------------------------------
@@ -30,29 +28,14 @@ import 'package:new_version/new_version.dart';
 /// read the [Example] above.
 /// Utilities, WidgetState, ScreenState
 class BaseController extends GetxController with BaseCommonWidgets {
-
-
-
-
-  // Navigator key 생성
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
   Future<bool> onWillPop() async {
-    // maypop : pop 할께 있으면 pop을 하고, 아니면, app 을 종료 시키는것
-    // pop 할께 있으면 true 인데, true 이면 app 이 종료가 되기 때문에 false 로 바꿔 줘야 되기 때문에 await 앞에 ! 을 넣어 줌
     return !await navigatorKey.currentState!.maybePop();
   }
-
-
-
-
   final box = GetStorage();
-
   bool isLoadMore = false;
   bool withScrollController = false;
-
   ScrollController scrollController = ScrollController();
-  StreamSubscription? connectionChangeStream;
   set setEnableScrollController(bool value) => withScrollController = value;
 
   ///[Calling showAlertIfNecessary with your app's
@@ -101,15 +84,6 @@ class BaseController extends GetxController with BaseCommonWidgets {
     } else {
       advancedStatusCheck(newVersion);
     }
-  }
-
-  bool isOffline = false;
-  void connectionChanged(dynamic hasConnection) {
-    isOffline = !hasConnection;
-    if (kDebugMode) {
-      print(isOffline);
-    }
-    update();
   }
 
   @override
