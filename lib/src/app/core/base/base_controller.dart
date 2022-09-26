@@ -32,6 +32,9 @@ class BaseController extends GetxController with BaseCommonWidgets {
   Future<bool> onWillPop() async {
     return !await navigatorKey.currentState!.maybePop();
   }
+
+
+
   final box = GetStorage();
   bool isLoadMore = false;
   bool withScrollController = false;
